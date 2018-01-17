@@ -66,6 +66,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -74,11 +75,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\MembershipTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\RepositoryBase.cs" />
+    <Compile Include="Settings\SiteSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TechnicalService.DAL\TechnicalService.DAL.csproj">
+      <Project>{F5BC002D-30F6-4C93-A32D-E0ED4C19E790}</Project>
+      <Name>TechnicalService.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TechnicalService.Entity\TechnicalService.Entity.csproj">
+      <Project>{AAE1B3B4-575E-482E-98C0-D1F8FE197901}</Project>
+      <Name>TechnicalService.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

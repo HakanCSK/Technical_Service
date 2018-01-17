@@ -74,11 +74,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Fault\Fault.cs" />
+    <Compile Include="Entities\Fault\Fault_Status.cs" />
+    <Compile Include="Entities\Product\Brand.cs" />
+    <Compile Include="Entities\Product\Category.cs" />
+    <Compile Include="Entities\Product\Model.cs" />
+    <Compile Include="Entities\Survey\Survey.cs" />
+    <Compile Include="Entities\Fault\Fault_Photo.cs" />
+    <Compile Include="Entities\Survey\Survey_Question.cs" />
+    <Compile Include="Entities\Survey\Survey_Response.cs" />
+    <Compile Include="Enums\FaultStatus.cs" />
+    <Compile Include="Enums\IdentityRoles.cs" />
+    <Compile Include="IdentityModels\AplicationRole.cs" />
+    <Compile Include="IdentityModels\ApplicationUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewsModel\MailModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
