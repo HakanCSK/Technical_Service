@@ -89,7 +89,10 @@
     <Compile Include="IdentityModels\AplicationRole.cs" />
     <Compile Include="IdentityModels\ApplicationUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewsModel\LoginViewModel.cs" />
     <Compile Include="ViewsModel\MailModel.cs" />
+    <Compile Include="ViewsModel\ProfileViewModel.cs" />
+    <Compile Include="ViewsModel\RegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

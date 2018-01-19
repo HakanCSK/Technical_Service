@@ -29,6 +29,7 @@ namespace TechnicalService.BLL.Settings
                 message.Subject = model.Subject;
                 message.IsBodyHtml = true;
                 message.BodyEncoding = Encoding.UTF8;
+                message.Body = model.Message;
                 if (!string.IsNullOrEmpty(model.Cc))
                     message.CC.Add(new MailAddress(model.Cc));
                 if (!string.IsNullOrEmpty(model.Bcc))

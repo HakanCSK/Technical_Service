@@ -125,7 +125,83 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\camera.css" />
+    <Content Include="Content\colorScheme-1.css" />
+    <Content Include="Content\colorScheme-2.css" />
+    <Content Include="Content\colorScheme-3.css" />
+    <Content Include="Content\colorScheme-4.css" />
+    <Content Include="Content\google-map.css" />
+    <Content Include="Content\grid.css" />
+    <Content Include="Content\LoginAndRegister.css" />
+    <Content Include="Content\mailform.css" />
+    <Content Include="Content\owl-carousel.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="images\camera-loader.gif" />
+    <Content Include="images\favicon.ico" />
+    <Content Include="images\gmap_marker.png" />
+    <Content Include="images\gmap_marker2.png" />
+    <Content Include="images\gmap_marker2_active.png" />
+    <Content Include="images\gmap_marker3.png" />
+    <Content Include="images\gmap_marker3_active.png" />
+    <Content Include="images\gmap_marker4.png" />
+    <Content Include="images\gmap_marker4_active.png" />
+    <Content Include="images\gmap_marker5.png" />
+    <Content Include="images\gmap_marker5_active.png" />
+    <Content Include="images\gmap_marker_active.png" />
+    <Content Include="images\ie8-panel\warning_bar_0000_us.jpg" />
+    <Content Include="images\page-1_img01.jpg" />
+    <Content Include="images\page-1_img02.jpg" />
+    <Content Include="images\page-1_img03.jpg" />
+    <Content Include="images\page-1_img04.jpg" />
+    <Content Include="images\page-1_img05.jpg" />
+    <Content Include="images\page-1_slide01.jpg" />
+    <Content Include="images\page-1_slide02.jpg" />
+    <Content Include="images\page-1_slide03.jpg" />
+    <Content Include="images\page-2_img01.jpg" />
+    <Content Include="images\page-2_img02.jpg" />
+    <Content Include="images\page-2_img03.jpg" />
+    <Content Include="images\page-2_img04.jpg" />
+    <Content Include="images\page-2_img05.jpg" />
+    <Content Include="images\page-2_img06.jpg" />
+    <Content Include="images\page-2_img07.jpg" />
+    <Content Include="images\page-2_img08.jpg" />
+    <Content Include="images\page-3_bg.jpg" />
+    <Content Include="images\page-3_img01.jpg" />
+    <Content Include="images\page-3_img02.jpg" />
+    <Content Include="images\page-3_img03.jpg" />
+    <Content Include="images\page-3_img04.jpg" />
+    <Content Include="images\page-3_img05.jpg" />
+    <Content Include="images\page-3_img06.jpg" />
+    <Content Include="images\page-4_img01.jpg" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\camera.js" />
+    <Content Include="Scripts\device.min.js" />
+    <Content Include="Scripts\html5shiv.js" />
+    <Content Include="Scripts\jquery-migrate-1.2.1.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.easing.1.3.js" />
+    <Content Include="Scripts\jquery.equalheights.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.mobile.customized.min.js" />
+    <Content Include="Scripts\jquery.mousewheel.min.js" />
+    <Content Include="Scripts\jquery.rd-google-map.js" />
+    <Content Include="Scripts\jquery.rd-navbar.js" />
+    <Content Include="Scripts\jquery.rd-parallax.js" />
+    <Content Include="Scripts\jquery.simplr.smoothscroll.min.js" />
+    <Content Include="Scripts\jquery.ui.totop.js" />
+    <Content Include="Scripts\mailform\jquery.form.min.js" />
+    <Content Include="Scripts\mailform\jquery.rd-mailform.min.c.js" />
+    <Content Include="Scripts\modal.js" />
+    <Content Include="Scripts\owl.carousel.min.js" />
+    <Content Include="Scripts\pointer-events.js" />
+    <Content Include="Scripts\rd-smoothscroll.min.js" />
+    <Content Include="Scripts\script.js" />
+    <Content Include="Scripts\superfish.js" />
+    <Content Include="Scripts\tmstickup.js" />
+    <Content Include="Scripts\wow.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -134,6 +210,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -143,6 +221,9 @@
     <Content Include="Views\web.config" />
     <Content Include="Areas\Admin\Views\web.config" />
     <None Include="packages.config" />
+    <Content Include="Views\Shared\_UserLayout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -155,7 +236,6 @@
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
