@@ -17,6 +17,7 @@ namespace TechnicalService.WebMVC.UI.Controllers
     public class AccountController : Controller
     {
         // GET: Account
+        [AllowAnonymous]
         public virtual ActionResult Register()
         {
             return View();
@@ -73,6 +74,7 @@ namespace TechnicalService.WebMVC.UI.Controllers
             }
         }
         // GET: Account
+        [AllowAnonymous]
         public ActionResult Login(string ReturnUrl)
         {
             if (HttpContext.User.Identity.IsAuthenticated)
@@ -81,12 +83,17 @@ namespace TechnicalService.WebMVC.UI.Controllers
                 {
                     ViewBag.sonuc = "Sistemi kullanabilmeniz için eposta adresinizi aktifleştirmeniz gerekmektedir.";
                 }
-                var url = ReturnUrl.Split('/');
-                // admin/kullaniciduzenle/5
-                // admin/kullanicilar
-                if (url[1].ToLower().Contains("admin"))
+
+                if (ReturnUrl != null)
                 {
-                    ViewBag.sonuc = "Bu alana yönetici hesabınızla girebilirsiniz. Lütfen yönetici bilgilerinizle giriş yapınız.";
+                    var url = ReturnUrl.Split('/');
+
+                    // admin/kullaniciduzenle/5
+                    // admin/kullanicilar
+                    if (url[1].ToLower().Contains("admin"))
+                    {
+                        ViewBag.sonuc = "Bu alana yönetici hesabınızla girebilirsiniz. Lütfen yönetici bilgilerinizle giriş yapınız.";
+                    }
                 }
             }
             var model = new LoginViewModel() { ReturnUrl = ReturnUrl };

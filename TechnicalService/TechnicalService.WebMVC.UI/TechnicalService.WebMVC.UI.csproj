@@ -221,9 +221,14 @@
     <Content Include="Views\web.config" />
     <Content Include="Areas\Admin\Views\web.config" />
     <None Include="packages.config" />
-    <Content Include="Views\Shared\_UserLayout.cshtml" />
+    <Content Include="Views\Shared\Layouts\_UserLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\_PartialHeader.cshtml" />
+    <Content Include="Views\Shared\_PartialFooter.cshtml" />
+    <Content Include="Views\Shared\_PartialMaps.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

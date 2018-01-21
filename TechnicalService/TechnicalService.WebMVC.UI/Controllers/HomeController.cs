@@ -13,5 +13,17 @@ namespace TechnicalService.WebMVC.UI.Controllers
         {
             return View();
         }
+        public PartialViewResult HeaderAreaResult()
+        {
+            
+            return PartialView("_PartialHeader");
+        }
+        public PartialViewResult FooterAreaResult()
+        {
+
+            return PartialView("_PartialFooter");
+        }
+
+
     }
 }
