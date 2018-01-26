@@ -1,8 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/Layouts/_UserLayout.cshtml";
+    Layout = "~/Views/Shared/Layouts/_UserHomeLayout.cshtml";
 }
 
-<h2>Index</h2>
+@{
+            Html.RenderAction("SliderAreaResult", "Home");
 
+}

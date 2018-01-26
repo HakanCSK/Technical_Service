@@ -66,6 +66,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -80,6 +81,7 @@
     <Compile Include="Entities\Product\Brand.cs" />
     <Compile Include="Entities\Product\Category.cs" />
     <Compile Include="Entities\Product\Model.cs" />
+    <Compile Include="Entities\Site\Slider.cs" />
     <Compile Include="Entities\Survey\Survey.cs" />
     <Compile Include="Entities\Fault\Fault_Photo.cs" />
     <Compile Include="Entities\Survey\Survey_Question.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="IdentityModels\AplicationRole.cs" />
     <Compile Include="IdentityModels\ApplicationUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewsModel\FaultViewModel.cs" />
     <Compile Include="ViewsModel\LoginViewModel.cs" />
     <Compile Include="ViewsModel\MailModel.cs" />
     <Compile Include="ViewsModel\ProfileViewModel.cs" />

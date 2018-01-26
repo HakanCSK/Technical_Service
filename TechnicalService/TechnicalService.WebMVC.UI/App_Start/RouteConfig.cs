@@ -12,6 +12,11 @@ namespace TechnicalService.WebMVC.UI
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapRoute(
+             "Account",
+             "Account/{action}",
+             new { controller = "Account", action = "Profile" }
+             );
 
             routes.MapRoute(
                 name: "Default",

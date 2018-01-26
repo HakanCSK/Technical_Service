@@ -1,0 +1,199 @@
+﻿@model TechnicalService.Entity.ViewsModel.FaultViewModel
+
+@{
+    ViewBag.Title = "FaultReport";
+    Layout = "~/Views/Shared/Layouts/_UserPageLayout.cshtml";
+}
+
+<div id="content" class="clearfix">
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- *** LEFT COLUMN ***
+            _________________________________________________________ -->
+@using (Html.BeginForm())
+{
+            <div class="col-md-9 clearfix">
+
+               
+
+
+
+
+                <div class="box clearfix">
+                    <div class="heading">
+                        <h3 class="text-uppercase">Personal details</h3>
+                        <p class="lead">Change your personal details or your password here.</p>
+                        <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                    </div>
+
+                   
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @if (ViewBag.Sonuc != null)
+                        {
+                            <div class="alert alert-info" role="alert">@ViewBag.Sonuc</div>
+                        }
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+
+
+                                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.InvoiceCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                                       
+                                            @Html.EditorFor(model => model.InvoiceCode, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.InvoiceCode, "", new { @class = "text-danger" })
+                                       
+                                    </div>
+                                    </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.TransactionDate)
+                                        
+                                            @Html.EditorFor(model => model.TransactionDate, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.TransactionDate, "", new { @class = "text-danger" })
+                                       
+                                    </div></div>
+                                </div>
+                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AddressDescription)
+                                        
+                                            @Html.EditorFor(model => model.AddressDescription, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.AddressDescription, "", new { @class = "text-danger" })
+                                        
+                                    </div></div>
+                <div class="col-sm-6">
+                    @Html.LabelFor(model => model.Fault_Photos)
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Fault_Photos, new { @class = "form-control", type = "file", multiple = true, accept = ".jpeg , .jpg,.gif" })
+                    </div>
+
+
+                </div>
+                                    <div class="col-sm-12 text-center">
+                                        <button type="submit" class="btn btn-template-main"><i class="fa fa-save"></i> Save changes</button>
+
+                                    </div>
+                     </div> </div>
+
+              <div class="col-md-3">
+
+                 
+
+
+
+                  <div class="box clearfix">
+                      <div class="heading">
+                          <h3 class="text-uppercase">Konumunuz</h3>
+                          <p class="lead">Change your personal details or your password here.</p>
+                          <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+                      </div>
+                      <div class="panel-body" id="map" style="height:300px;"></div>
+                      @Html.HiddenFor(model => model.lat, new { id = "lat" })
+                      @Html.HiddenFor(model => model.lng, new { id = "long" })
+
+                  </div>
+                   
+            </div> }</div></div>
+                               
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP53g7yo4Rm0Fc5qFg7_iiK3k8AWSNuyE&libraries=places&sensor=false" " type="text/javascript"></script>
+
+<script type="text/javascript">
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    else {
+        alert("Tarayıcınız lokasyon desteklemiyor!...")
+    }
+    function showPosition(pos) {
+        console.log(pos);
+        var latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+        var latcoor = pos.coords.latitude;
+        var lngcoor = pos.coords.longitude;
+        var options = {
+            zoom: 12,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            draggableCursor: "crosshair",
+            scrollwheel: true,
+            streetViewControl: false
+        };
+        var map = new google.maps.Map(document.getElementById("map"), options);
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title: "Bulunduğunuz Konum"
+        });
+        google.maps.event.addListener(map, "click", function (location) {
+            GetLocationInfo(location.latLng);
+        });
+        var initListener;
+
+        function GetLocationInfo(latlng) {
+            if (latlng != null) {
+                ShowLatLong(latlng);
+                UpdateStreetView(latlng);
+
+            }
+        }
+        function GotoLatLong() {
+            if ($("#lat").val() != "" && $("#long").val() != "") {
+                var lat = $("#lat").val();
+                var long = $("#long").val();
+                var latLong = new google.maps.LatLng(lat, long);
+                ShowLatLong(latLong);
+                map.setCenter(latLong);
+                UpdateStreetView(latLong);
+            }
+        }
+
+        function ShowLatLong(latLong) {
+            // show the lat/long
+            if (marker != null) {
+                marker.setMap(null);
+            }
+            marker = new google.maps.Marker({
+                position: latLong,
+                map: map
+            });
+
+            latcoor = latLong.lat();
+            lngcoor = latLong.lng();
+
+        }
+        $("#lat").val(latcoor);
+        $("#long").val(lngcoor);
+    }
+
+      /*$("#address").val((ReverseGeocode(latLong.lat(), latLong.lng(), '#address')));
+                $("#adresX").val(ReverseGeocode(latLong.lat(), latLong.lng(), '#adresX'));*/
+        //BULUNULAN LOKASYONU ALMA
+
+</script>
+
+

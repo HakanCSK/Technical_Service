@@ -9,7 +9,7 @@ using TechnicalService.DAL;
 namespace TechnicalService.BLL.Repository
 {
 
-    public abstract class RepositoryBase<T, Id> where T : class where Id : struct
+    public abstract class RepositoryBase<T, Id>:IDisposable where T : class where Id : struct
     {
         protected static MyContext dbContext;
 

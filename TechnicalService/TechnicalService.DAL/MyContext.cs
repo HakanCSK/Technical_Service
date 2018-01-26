@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TechnicalService.Entity.Entities.Fault;
 using TechnicalService.Entity.Entities.Product;
+using TechnicalService.Entity.Entities.Site;
 using TechnicalService.Entity.Entities.Survey;
 using TechnicalService.Entity.IdentityModels;
 
@@ -32,6 +33,9 @@ namespace TechnicalService.DAL
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Survey_Question> Survey_Questionss { get; set; }
         public DbSet<Survey_Response> Survey_Responsess { get; set; }
+
+        public DbSet<Slider> Slider { get; set; }
+
 
 
 

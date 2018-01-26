@@ -16,10 +16,17 @@ namespace TechnicalService.WebMVC.UI.Controllers
 {
     public class AccountController : Controller
     {
+
+
         // GET: Account
         [AllowAnonymous]
+        
         public virtual ActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+              return  RedirectToAction("Profile", "Account");
+            ViewBag.Action = this.ControllerContext.RouteData.Values["action"].ToString();
+            ViewBag.Controller = this.ControllerContext.RouteData.Values["controller"].ToString();
             return View();
         }
         [HttpPost]
@@ -77,6 +84,8 @@ namespace TechnicalService.WebMVC.UI.Controllers
         [AllowAnonymous]
         public ActionResult Login(string ReturnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Profile", "Account");
             if (HttpContext.User.Identity.IsAuthenticated)
             {
                 if (HttpContext.User.IsInRole("Passive"))
@@ -109,8 +118,34 @@ namespace TechnicalService.WebMVC.UI.Controllers
             var user = await userManager.FindAsync(model.Username, model.Password);
             if (user == null)
             {
+                if(userManager.FindByName(model.Username)==null)
                 ModelState.AddModelError(string.Empty, "Böyle bir kullanıcı bulunamadı");
+                else
+                ModelState.AddModelError(string.Empty, "Şifre hatalı");
                 return View(model);
+            }
+            else
+            {
+                var roleName = MembershipTools.NewRoleManager().FindById(user.Roles.First().RoleId).Name;
+                if (roleName == IdentityRoles.Passive.ToString())
+                    {
+                        ViewBag.sonuc = "Sistemi kullanabilmeniz için eposta adresinizi aktifleştirmeniz gerekmektedir.";
+                    return View();
+                    }
+
+                    if (model.ReturnUrl != null)
+                    {
+                        var url = model.ReturnUrl.Split('/');
+
+                        // admin/kullaniciduzenle/5
+                        // admin/kullanicilar
+                        if (url[1].ToLower().Contains("admin"))
+                        {
+                            ViewBag.sonuc = "Bu alana yönetici hesabınızla girebilirsiniz. Lütfen yönetici bilgilerinizle giriş yapınız.";
+                        }
+                    }
+                
+               
             }
             var authManager = HttpContext.GetOwinContext().Authentication;
             var userIdentity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
@@ -142,16 +177,15 @@ namespace TechnicalService.WebMVC.UI.Controllers
         [Authorize]
         public ActionResult Profile()
         {
-            var userManager = MembershipTools.NewUserManager();
-            var user = userManager.FindById(HttpContext.User.Identity.GetUserId());
-            var model = new ProfileViewModel()
+            var user = MembershipTools.GetUser();
+
+            return View(new ProfileViewModel()
             {
                 Email = user.Email,
                 Name = user.Name,
                 Surname = user.SurName,
                 Username = user.UserName
-            };
-            return View(model);
+            });
         }
         [Authorize]
         [HttpPost]
@@ -169,10 +203,19 @@ namespace TechnicalService.WebMVC.UI.Controllers
                 user.Name = model.Name;
                 user.SurName = model.Surname;
                 user.Email = model.Email;
+                if (userManager.FindByName(model.Username) != null && model.Username != user.UserName)
+                {
+                    ViewBag.sonuc = "Bu kullanıcı adı zaten kullanılıyor.";
+                    return View(model);
+                }
+                user.UserName = model.Username;
+              
                 await userStore.UpdateAsync(user);
                 await userStore.Context.SaveChangesAsync();
+                
 
-                ViewBag.sonuc = "Bilgileriniz güncelleşmiştir";
+
+                ViewBag.sonuc = "Bilgileriniz güncellenmiştir";
 
                 var model2 = new ProfileViewModel()
                 {
@@ -185,10 +228,19 @@ namespace TechnicalService.WebMVC.UI.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.sonuc = ex.Message;
+                ViewBag.sonuc = "Güncelleştirme işleminde bir hata oluştu. "+ex.Message;
                 return View(model);
             }
         }
+
+        [Authorize]
+        public ActionResult UpdatePassword()
+        {
+            return View();
+
+
+        }
+        
 
         [Authorize]
         [HttpPost]
@@ -198,7 +250,7 @@ namespace TechnicalService.WebMVC.UI.Controllers
             if (model.NewPassword != model.ConfirmNewPassword)
             {
                 ModelState.AddModelError(string.Empty, "Şifreler uyuşmuyor");
-                return View("Profile");
+                return View("UpdatePassword");
             }
             try
             {
@@ -210,13 +262,13 @@ namespace TechnicalService.WebMVC.UI.Controllers
                 if (user == null)
                 {
                     ModelState.AddModelError(string.Empty, "Mevcut şifreniz yanlış girildi");
-                    return View("Profile");
+                    return View("UpdatePassword");
                 }
                 await userStore.SetPasswordHashAsync(user, userManager.PasswordHasher.HashPassword(model.NewPassword));
                 await userStore.UpdateAsync(user);
                 await userStore.Context.SaveChangesAsync();
                 HttpContext.GetOwinContext().Authentication.SignOut();
-                return RedirectToAction("Profile");
+                return RedirectToAction("UpdatePassword");
             }
             catch (Exception ex)
             {
@@ -291,7 +343,7 @@ namespace TechnicalService.WebMVC.UI.Controllers
                 userManager.RemoveFromRole(sonuc.Id, IdentityRoles.Passive.ToString());
                 userManager.AddToRole(sonuc.Id, IdentityRoles.User.ToString());
             }
-            ViewBag.sonuc = $"Merhaba {sonuc.Name} {sonuc.SurName} <br/> Aktivasyon işleminiz başarılı";
+            ViewBag.sonuc = $"Merhaba {sonuc.Name} {sonuc.SurName}  Aktivasyon işleminiz başarılı";
             await SiteSettings.SendMail(new MailModel()
             {
                 To = sonuc.Email,

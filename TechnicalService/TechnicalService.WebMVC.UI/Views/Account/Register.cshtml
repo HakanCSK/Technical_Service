@@ -2,49 +2,66 @@
 
 @{
     ViewBag.Title = "Register";
-    Layout = "~/Views/Shared/Layouts/_UserLayout.cshtml";
+    Layout = "~/Views/Shared/Layouts/_UserPageLayout.cshtml";
 }
-<link href="~/Content/LoginAndRegister.css" rel="stylesheet" />
 
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
+<div id="content">
+    <div class="container">
 
- 
-  
-    <div class="login-card">
-    <h1>Kayıt</h1><br>
-
-  
-        @Html.AntiForgeryToken()
-        <div class="alert alert-danger" role="alert">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-            @Html.LabelFor(x => x.Name, new { @class = "col-sm-2 control-label" })
-            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Ad.." })
-            @Html.LabelFor(x => x.Surname, new { @class = "col-sm-2 control-label" })
-            @Html.TextBoxFor(x => x.Surname, new { @class = "form-control", placeholder = "Soyad.." })
-            @Html.LabelFor(x => x.Email, new { @class = "col-sm-2 control-label" })
-            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Email.." })
-            @Html.LabelFor(x => x.Username, new { @class = "col-sm-2 control-label" })
-            @Html.TextBoxFor(x => x.Username, new { @class = "form-control", placeholder = "Kullanıcı Adı.." })
-            @Html.LabelFor(x => x.Password, new { @class = "col-sm-2 control-label" })
-            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", type = "password" })
-            @Html.ValidationMessageFor(x => x.Password)
-            @Html.LabelFor(x => x.ConfirmPassword, new { @class = "col-sm-2 control-label" })
-            @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control", type = "password" })
-            <span class="text-danger">@Html.ValidationMessageFor(x => x.ConfirmPassword)</span>
+        <div class="row">
 
 
+            <div class="col-md-offset-3 col-md-6">
+                <div class="box">
 
-            <button type="submit" class="btn btn-default">Kayıt Ol</button>
-            <div class="login-help">
-                <a href="@Url.Action("Login","Account")">Giriş Yap</a>
+                    <h2 class="text-uppercase">New account</h2>
+
+                    <p class="lead">Not our registered customer yet?</p>
+                    <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
+                    <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+
+                    <hr>
+
+
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Name, new { @class = " control-label" })
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Ad.." })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Surname, new { @class = " control-label" })
+                            @Html.TextBoxFor(x => x.Surname, new { @class = "form-control", placeholder = "Soyad.." })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Email, new { @class = " control-label" })
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Email.." })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Username, new { @class = "control-label" })
+                            @Html.TextBoxFor(x => x.Username, new { @class = "form-control", placeholder = "Kullanıcı Adı.." })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Password, new { @class = "control-label" })
+                            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", type = "password" })
+
+                            @Html.ValidationMessageFor(x => x.Password)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.ConfirmPassword, new { @class = " control-label" })
+                            @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control", type = "password" })
+                        </div>
+                            <span class="text-danger">@Html.ValidationMessageFor(x => x.ConfirmPassword)</span>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-template-main"><i class="fa fa-user-md"></i> Register</button>
+                                <a href="@Url.Action("Login","Account")">Giriş Yap</a>
+                            </div>
+                    }
+                </div>
             </div>
         </div>
-    }
-                
-              
+    </div>
+</div>

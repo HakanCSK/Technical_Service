@@ -1,0 +1,54 @@
+﻿
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+        <h3 class="panel-title">Customer section</h3>
+    </div>
+
+    <div class="panel-body">
+
+        <ul class="nav nav-pills nav-stacked">
+            
+            @if (HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "UpdatePassword")
+            {
+
+                <li class="active">
+                    <a href="../Account/UpdatePassword"><i class="fa fa-list"></i> Update Password</a>
+                </li>
+            }
+            else
+            {
+
+                <li>
+                    <a href="../Account/UpdatePassword"><i class="fa fa-list"></i> Update Password</a>
+                </li>
+            }
+                
+                   
+            <li>
+                <a href="#"><i class="fa fa-heart"></i>cccc</a>
+            </li>
+           
+                @if (HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Profile")
+                {
+
+                    <li class="active">
+                        <a href="../Account/Profile"><i class="fa fa-user"></i> Profile</a>
+                    </li>
+                }
+                else
+                {
+                    <li >
+                        <a href="../Account/Profile"><i class="fa fa-user"></i> Profile</a>
+                    </li>
+                }
+                   
+                
+                <li>
+                 <a href="../Account/Logout"><i class="fa fa-sign-out"></i> Logout</a>
+                    </li>
+        </ul>
+    </div>
+
+</div>

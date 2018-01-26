@@ -48,6 +48,38 @@ namespace TechnicalService.BLL.Settings
             }
 
         }
+        public static string UrlFormatConverter(string name)
+        {
+            string Result = name.ToLower();
+           Result= Result.Replace("'", "");
+           Result= Result.Replace(" ", "-");
+           Result= Result.Replace("<", "");
+           Result= Result.Replace(">", "");
+           Result= Result.Replace("&", "");
+           Result= Result.Replace("[", "");
+           Result= Result.Replace("!", "");
+           Result= Result.Replace("]", "");
+           Result= Result.Replace("ı", "i");
+           Result= Result.Replace("ö", "o");
+           Result= Result.Replace("ü", "u");
+           Result= Result.Replace("ş", "s");
+           Result= Result.Replace("ç", "c");
+           Result= Result.Replace("ğ", "g");
+           Result= Result.Replace("İ", "I");
+           Result= Result.Replace("Ö", "O");
+           Result= Result.Replace("Ü", "U");
+           Result= Result.Replace("Ş", "S");
+           Result= Result.Replace("Ç", "C");
+           Result= Result.Replace("Ğ", "G");
+           Result= Result.Replace("|", "");
+           Result= Result.Replace(".", "-");
+           Result= Result.Replace("?", "-");
+           Result= Result.Replace(";", "-");
+
+            return Result;
+        }
+
+
 
     }
 }

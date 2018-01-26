@@ -28,7 +28,7 @@ namespace TechnicalService.Entity.ViewsModel
         [Display(Name = "Şifre")]
         [DataType(DataType.Password)]
         [RegularExpression(@"^[a-zA-Z]\w{4,14}$", ErrorMessage = @"	
-The password's first character must be a letter, it must contain at least 5 characters and no more than 15 characters and no characters other than letters, numbers and the underscore may be used")]
+Parolanın ilk karakteri bir harf olmalıdır, en az 5 karakter içermeli ve en fazla 15 karakter içermelidir.Harfler, rakamlar ve altçizgi dışındaki karakterler kullanılmamalıdır.")]
         public string Password { get; set; }
         [Required]
         [DataType(DataType.Password)]

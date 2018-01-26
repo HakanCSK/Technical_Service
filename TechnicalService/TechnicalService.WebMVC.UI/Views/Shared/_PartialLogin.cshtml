@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNet.Identity
+
+
+
+<div class="login">
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
+
+
+            <a href="../Account/Profile"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Merhaba @User.Identity.GetUserName()</span></a>
+           
+
+            <a href="../Account/Logout"><i class="fa fa-sign-out"></i> <span class="hidden-xs text-uppercase">Çıkış Yap</span></a>
+
+        }
+    }
+    else
+    {
+
+
+        <a href="../Account/Login"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Giriş Yap</span></a>
+        <a href="../Account/Register"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Kayıt Ol</span></a>
+
+    }
+</div>

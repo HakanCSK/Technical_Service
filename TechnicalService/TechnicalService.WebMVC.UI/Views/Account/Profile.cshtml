@@ -2,74 +2,109 @@
 
 @{
     ViewBag.Title = "Profile";
-    Layout = "~/Views/Shared/Layouts/_UserLayout.cshtml";
+    Layout = "~/Views/Shared/Layouts/_UserPageLayout.cshtml";
 }
 
-<h2>Profile</h2>
 
-<div>
-    <h4>ProfileViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+<div id="content" class="clearfix">
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+    <div class="container">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Surname)
-        </dt>
+        <div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.Surname)
-        </dd>
+            <!-- *** LEFT COLUMN ***
+            _________________________________________________________ -->
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
+            <div class="col-md-9 clearfix" id="customer-account">
 
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
+                <p class="lead">Change your personal details or your password here.</p>
+                <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+             
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OldPassword)
-        </dt>
+                <div class="box clearfix">
+                    <div class="heading">
+                        <h3 class="text-uppercase">Personal details</h3>
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.OldPassword)
-        </dd>
+                  @using (Html.BeginForm())
+                  {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                      if (ViewBag.Sonuc != null)
+                      {
+                    <div class="alert alert-info" role="alert">@ViewBag.Sonuc</div>
+                      }
+                    <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name)
+                                    
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    
+                            </div></div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Surname)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NewPassword)
-        </dt>
+                                    @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                                  
+                                    </div>
+                            </div>
+                    </div>
+                        <!-- /.row -->
 
-        <dd>
-            @Html.DisplayFor(model => model.NewPassword)
-        </dd>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Username)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ConfirmNewPassword)
-        </dt>
+                                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
 
-        <dd>
-            @Html.DisplayFor(model => model.ConfirmNewPassword)
-        </dd>
+                                  
 
-    </dl>
+                                    </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email)
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-template-main"><i class="fa fa-save"></i> Save changes</button>
+
+                        </div>
+                        <!-- /.row -->
+
+                  }
+            </div>
+                </div>
+            <!-- /.col-md-9 -->
+            <!-- *** LEFT COLUMN END *** -->
+            <!-- *** RIGHT COLUMN ***
+            _________________________________________________________ -->
+
+            <div class="col-md-3">
+                <!-- *** CUSTOMER MENU ***
+                _________________________________________________________ -->
+                @Html.Partial("_PartialAccountSidebar")
+                <!-- /.col-md-3 -->
+                <!-- *** CUSTOMER MENU END *** -->
+            </div>
+
+            <!-- *** RIGHT COLUMN END *** -->
+
+    
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<!-- /#content -->

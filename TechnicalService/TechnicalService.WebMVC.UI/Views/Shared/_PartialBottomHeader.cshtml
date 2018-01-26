@@ -1,0 +1,18 @@
+﻿<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>@HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString()</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb">
+                    <li> 
+                        <a href="../@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()">@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()</a>
+                    </li>
+                    <li>@HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString()</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -37,6 +37,8 @@ namespace TechnicalService.BLL.Account
                 return user.UserName;
             return "Null";
         }
+      
+
         public static string GetNameSurname()
         {
             var id = HttpContext.Current.User.Identity.GetUserId();
@@ -48,6 +50,19 @@ namespace TechnicalService.BLL.Account
                 var user = userManager.FindById(id);
                 string nameSurname = string.Format("{0} {1}.", user.Name, user.SurName.Substring(0, 1));
                 return nameSurname;
+            }
+        }
+        
+        public static ApplicationUser GetUser()
+        {
+            var id = HttpContext.Current.User.Identity.GetUserId();
+            if (string.IsNullOrEmpty(id))
+                return null;
+            else
+            {
+                var userManager = NewUserManager();
+                var user = userManager.FindById(id);
+                return user;
             }
         }
 

@@ -25,10 +25,9 @@ namespace TechnicalService.Entity.Entities.Fault
         public string Report { get; set; }
         public string InvoiceCode { get; set; }
         [Required]
-        public DateTime AppointmentDate { get; set; }
-        [Required]
-        public string Location { get; set; }
-        public string Adress { get; set; }
+        public DateTime AppointmentDate { get; set; } = DateTime.Now;
+        
+        public string Address { get; set; }
 
         public List<Fault_Status> Statuses { get; set; } = new List<Fault_Status>();
         public List<Fault_Photo> Photos { get; set; } = new List<Fault_Photo>();
@@ -40,6 +39,8 @@ namespace TechnicalService.Entity.Entities.Fault
         public ApplicationUser Operator { get; set; }
         [ForeignKey("TechnicianID")]
         public ApplicationUser Technician { get; set; }
-
+        
+        public string lat { get; set; }
+        public string lng { get; set; }
     }
 }
