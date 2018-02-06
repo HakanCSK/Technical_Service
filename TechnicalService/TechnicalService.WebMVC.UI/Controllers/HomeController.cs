@@ -49,5 +49,13 @@ namespace TechnicalService.WebMVC.UI.Controllers
             return View();
         }
 
+        public ActionResult Washing()
+        {
+
+
+            return View();
+        }
+
+
     }
 }

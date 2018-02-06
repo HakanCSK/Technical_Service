@@ -20,6 +20,11 @@ namespace TechnicalService.WebMVC.UI.Areas.Management.Controllers
         public ActionResult UserManager()
 
         {
+            if (TempData["Result"] != null)
+            {
+                ViewBag.Result = TempData["Result"];
+                TempData.Remove("Result");
+            }
             var Users = GetAllUsers();
             ViewBag.Rolles = RoleSelectList();
             var rol = RoleSelectList();
@@ -27,22 +32,16 @@ namespace TechnicalService.WebMVC.UI.Areas.Management.Controllers
             return View(Users);
 
         }
-         [HttpPost]
-        public ActionResult UserManager(string id)
+   
+        [HttpPost]
+        public ActionResult DeleteUser(string id)
         {
-            if (id != null)
-            {
-                bool result = MembershipTools.DeleteUser(id);
-                if (result)
-                    ViewBag.Result = "Kullanıcı silindi";
-                else
-                    ViewBag.Result = "Kullanıcı Silinirken Hata Oluştu!!";
-            }
-            var Users = GetAllUsers();
-            ViewBag.Rolles = RoleSelectList();
-
-            return View(Users);
-
+            bool result = MembershipTools.DeleteUser(id);
+            if (result)
+                TempData["Result"] = "Kullanıcı silindi";
+            else
+                TempData["Result"] = "Kullanıcı Silinirken Hata Oluştu!!";
+            return RedirectToAction("UserManager");
         }
 
     }

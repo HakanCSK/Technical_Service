@@ -9,7 +9,7 @@ using static TechnicalService.BLL.Repository.Repository;
 
 namespace TechnicalService.WebMVC.UI.Areas.Management.Controllers
 {
-    [Authorize(Roles = "Operatör")]
+    [Authorize(Roles = "Operatör,Admin")]
     public class OperatorController : Controller
     {
         // GET: Management/Operator

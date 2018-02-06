@@ -4,10 +4,13 @@
     ViewBag.Title = "Faults";
     Layout = "~/Views/Shared/Layouts/_UserPageLayout.cshtml";
 }
+<!-- datatables -->
 
+<link href="~/Areas/Management/lib/datatables/extras/TableTools/media/css/TableTools.css" rel="stylesheet" />
+<link href="~/Areas/Management/css/style.css" rel="stylesheet" />
 
 <div class="row">
-    <div class="col-sm-10 col-md-10">
+    <div class="col-md-offset-1 col-sm-10 col-md-10 ">
         <h3 class="heading">Arızalar</h3>
         @if (ViewBag.Sonuc != null)
         {
@@ -17,25 +20,28 @@
             <thead>
                 <tr>
                     <th>
-                       Oluşturma Tarihi 
+                        Oluşturma Tarihi
                     </th>
                     <th>
-                       Başlık
+                        Başlık
                     </th>
                     <th>
-                      Açıklama
+                        Açıklama
                     </th>
                     <th>
-                      Operatör
+                        Operatör
                     </th>
                     <th>
-                       Teknisyen
+                        Teknisyen
                     </th>
                     <th>
-                      Randevu Tarihi
+                        Randevu Tarihi
                     </th>
                     <th>
-                       Adres Açıklaması
+                        Adres Açıklaması
+                    </th>
+                    <th>
+                        Son İşlem
                     </th>
                     <th>İşlemler</th>
 
@@ -56,21 +62,34 @@
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
-                            @MembershipTools.GetUserFullName(item.OperatorID)
+                            @if (item.OperatorID != null)
+                            {
+                                @MembershipTools.GetUserFullName(item.OperatorID)
+                            }
                         </td>
                         <td>
-                            @MembershipTools.GetUserFullName(item.TechnicianID)
+                            
+                            @if (item.TechnicianID != null)
+                            {
+                                @MembershipTools.GetUserFullName(item.TechnicianID)
+                            }
                         </td>
-                                      
+
                         <td>
                             @Html.DisplayFor(modelItem => item.AppointmentDate)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Address)
                         </td>
-                     
                         <td>
-                            @Html.ActionLink("Sil", "Delete", new { id=item.ID })
+                            @if (item.Statuses.Count > 0) {
+                            @item.Statuses.Last().Status.ToString() 
+                            @item.Statuses.Last().Description
+                            }
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Sil", "Delete", new { id = item.ID })
                         </td>
                     </tr>
                 }
@@ -78,22 +97,23 @@
 
         </table>
 
-        </div></div>
-        <!-- datatable -->
-        <script src="~/Areas/Management/lib/datatables/jquery.dataTables.min.js"></script>
+    </div>
+</div>
+<!-- datatable -->
+<script src="~/Areas/Management/lib/datatables/jquery.dataTables.min.js"></script>
 
-        <script src="~/Areas/Management/lib/datatables/extras/Scroller/media/js/dataTables.scroller.min.js"></script>
-        <!-- datatable table tools -->
-        <script src="~/Areas/Management/lib/datatables/extras/TableTools/media/js/TableTools.min.js"></script>
-        <script src="~/Areas/Management/lib/datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
-        <!-- datatables bootstrap integration -->
-        <script src="~/Areas/Management/lib/datatables/jquery.dataTables.bootstrap.min.js"></script>
+<script src="~/Areas/Management/lib/datatables/extras/Scroller/media/js/dataTables.scroller.min.js"></script>
+<!-- datatable table tools -->
+<script src="~/Areas/Management/lib/datatables/extras/TableTools/media/js/TableTools.min.js"></script>
+<script src="~/Areas/Management/lib/datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
+<!-- datatables bootstrap integration -->
+<script src="~/Areas/Management/lib/datatables/jquery.dataTables.bootstrap.min.js"></script>
 
-        <!-- datatable functions -->
-        <script src="~/Areas/Management/js/gebo_datatables.js"></script>
-        <!-- additional sorting for datatables -->
-        <script src="~/Areas/Management/lib/datatables/jquery.dataTables.sorting.js"></script>
-        <!-- datatables bootstrap integration -->
-        <script src="~/Areas/Management/lib/datatables/jquery.dataTables.bootstrap.min.js"></script>
-        <!-- tables functions -->
-        <script src="~/Areas/Management/js/gebo_tables.js"></script>
+<!-- datatable functions -->
+<script src="~/Areas/Management/js/gebo_datatables.js"></script>
+<!-- additional sorting for datatables -->
+<script src="~/Areas/Management/lib/datatables/jquery.dataTables.sorting.js"></script>
+<!-- datatables bootstrap integration -->
+<script src="~/Areas/Management/lib/datatables/jquery.dataTables.bootstrap.min.js"></script>
+<!-- tables functions -->
+<script src="~/Areas/Management/js/gebo_tables.js"></script>

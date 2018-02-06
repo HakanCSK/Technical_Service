@@ -1523,6 +1523,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
+    <Content Include="Content\datatable.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\mailform.css" />
@@ -1729,6 +1730,9 @@
     <Content Include="Areas\Management\Views\Admin\UserManager.cshtml" />
     <Content Include="Areas\Management\Views\Operator\FaultList.cshtml" />
     <Content Include="Areas\Management\Views\Operator\Details.cshtml" />
+    <Content Include="Areas\Management\Views\Shared\_PartialLogin.cshtml" />
+    <Content Include="Areas\Management\Views\Technician\FaultList.cshtml" />
+    <Content Include="Areas\Management\Views\Technician\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1808,6 +1812,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Fault\Faults.cshtml" />
+    <Content Include="Views\Home\Washing.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1820,7 +1825,6 @@
     <Folder Include="Areas\Management\lib\plupload\examples\uploads\" />
     <Folder Include="Areas\Management\Models\" />
     <Folder Include="Areas\Management\Views\Base\" />
-    <Folder Include="Areas\Management\Views\Technician\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\esm\" />
     <Folder Include="Scripts\umd\" />

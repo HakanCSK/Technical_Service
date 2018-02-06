@@ -75,7 +75,7 @@
                             <td><a href="#" id="@("group"+item.UserName)" onmouseover="editablerole(@("group" + @item.UserName))" data-type="select" data-pk="@item.ID" data-value="@item.RoleID" data-source="/groups" data-original-title="Select group">@item.RoleName</a></td>
                             
                             <td class="center-block">
-                              @using (Html.BeginForm("UserManager", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+                              @using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
                               {
                                      @Html.Hidden("id", item.ID)
 

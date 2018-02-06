@@ -1,0 +1,59 @@
+﻿@using TechnicalService.BLL.Account
+@{
+    ViewBag.Title = "FaultList";
+    Layout = "~/Areas/Management/Views/Shared/_ManagementLayout.cshtml";
+}
+@model IEnumerable<TechnicalService.Entity.Entities.Fault.Fault>
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <h3 class="heading"></h3>
+        <table class="table table-striped location_table table-bordered dTableR" id="dt_a">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Kullanıcı Adı</th>
+                    <th>Başlık</th>
+                    <th>Adres Açıklaması</th>
+                    <th>Lat, Lng</th>
+                    <th>Açıklama</th>
+                    <th>Operatör</th>
+                    <th>İşlemler</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                  
+                        <tr>
+
+                            <td>@item.ID</td>
+                            <td>@MembershipTools.GetUserFullName(item.UserID)</td>
+                            <td>@item.Title</td>
+                            <td class="address">@item.Address</td>
+                            <td>@item.lat, @item.lng</td>
+                            <td>@item.Description</td>
+                            <td>
+                               
+                    
+                                    @MembershipTools.GetUserFullName(item.OperatorID)
+                                
+                            </td>
+                         
+                            <td>
+                                <div class="btn-group">
+                                    <a href="@Url.Action("Edit", "Technician", new { Area = "Management" ,id=item.ID } )" data-form-method="post" class="show_on_map btn btn-default btn-xs">Düzenle</a>
+                                    
+                                </div>
+                            </td>
+
+                        </tr>
+                    
+                }
+            </tbody>
+        </table>
+    </div>
+</div>     
+

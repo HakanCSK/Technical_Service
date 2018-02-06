@@ -66,20 +66,25 @@ namespace TechnicalService.BLL.Account
       public static  bool DeleteUser(string id)
         {
             var userManager = NewUserManager();
-            //var user = userManager.FindById(id);
+            var rolemanager =NewRoleManager();
+            string roleid=rolemanager.FindByName("Deleted").Id;
             if (userManager.IsInRole(id, "Admin"))
             {
                 return false;
             }
-            //user.Roles.Clear();
-            userManager.AddToRole(id, IdentityRoles.Deleted.ToString());
+            SetRole(id, roleid);
+            
             return true;
         }
         public static string GetUserFullName(string id)
         {
             var userManager = NewUserManager();
             var user=userManager.FindById(id);
-            return user.Name + " " + user.SurName;
+            var name = user?.Name + " " + user?.SurName;
+            if (name != null)
+                return user?.Name + " " + user?.SurName;
+            else
+                return user.UserName;
         }
 
 

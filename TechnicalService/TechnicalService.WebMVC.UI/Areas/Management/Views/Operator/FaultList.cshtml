@@ -55,6 +55,7 @@
                     <th>Adres Açıklaması</th>
                     <th>Lat, Lng</th>
                     <th>Açıklama</th>
+                    <th>Teknisyen</th>
                     <th>İşlemler</th>
                     <th class="hidden"></th>
                     
@@ -68,16 +69,22 @@
                 <tr>
                 
                     <td>@item.ID</td>
-                    <td>@MembershipTools.GetUserName(item.UserID)</td>
+                    <td>@MembershipTools.GetUserFullName(item.UserID)</td>
                     <td>@item.Title</td>
                     <td class="address">@item.Address</td>
                     <td>@item.lat, @item.lng</td>
                     <td>@item.Description</td>
+                    <td>
+                        @if (item.TechnicianID != null)
+                    {
+                            @MembershipTools.GetUserFullName(item.TechnicianID)
+                        }
+                    </td>
                     <td class="hidden">@item.TechnicianID</td>
                     <td>
                         <div class="btn-group">
-                            <a href="javascript:void(0)" class="show_on_map btn btn-default btn-xs">Show</a>
-                            <a href="javascript:void(0)" class="comp_edit btn btn-default btn-xs">Edit</a>
+                            <a href="javascript:void(0)" class="show_on_map btn btn-default btn-xs">Göster</a>
+                            <a href="javascript:void(0)" class="comp_edit btn btn-default btn-xs">Düzenle</a>
                         </div>
                     </td>
                    

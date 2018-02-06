@@ -18,15 +18,15 @@
                    {
                     if (HttpContext.Current.User.IsInRole("Operatör"))
                     {
-                        <a type="button"  class="btn btn-template-primary" href="@Url.Action("Index", "Operator", new { Area = "Management" })">Operator Ekranı</a>
+                        <a type="button"  class="btn btn-template-primary" href="@Url.Action("FaultList", "Operator", new { Area = "Management" })">Operator Ekranı</a>
                     }
                     if (HttpContext.Current.User.IsInRole("Admin"))
                     {
-                        <a type="button"  class="btn btn-template-primary" href="@Url.Action("Index", "Admin", new { Area = "Management" })">Admin Ekranı</a>
+                        <a type="button"  class="btn btn-template-primary" href="@Url.Action("UserManager", "Admin", new { Area = "Management" })">Admin Ekranı</a>
                     }
                     if (HttpContext.Current.User.IsInRole("Teknisyen"))
                     {
-                        <a  type="button" class="btn btn-template-primary"  href="@Url.Action("Index", "Technician", new { Area = "Management" })"> >Teknisyen Ekranı</a>
+                        <a  type="button" class="btn btn-template-primary"  href="@Url.Action("FaultList", "Technician", new { Area = "Management" })"> Teknisyen Ekranı</a>
                         }
                     }
                     @Html.Partial("_PartialLogin")

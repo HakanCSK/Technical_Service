@@ -88,6 +88,7 @@ namespace TechnicalService.WebMVC.UI.Controllers
                     FaultID = NewFault.ID
                 };
                 NewFault.Statuses.Add(NewFault_Status);
+                
                 new FaultRepo().Update();
                 ViewBag.sonuc = "Kayıt Başarılı";
 
@@ -104,6 +105,8 @@ namespace TechnicalService.WebMVC.UI.Controllers
 
         public ActionResult Faults()
         {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("Login", "Account");
             var faults = new FaultRepo().GetAll().Where(x=>x.UserID==User.Identity.GetUserId()).ToList();
             if (TempData["Sonuc"] != null)
             {
@@ -113,6 +116,7 @@ namespace TechnicalService.WebMVC.UI.Controllers
 
             return View(faults);
         }
+
         public ActionResult Delete(int id)
         {
             var faultrepo = new FaultRepo();

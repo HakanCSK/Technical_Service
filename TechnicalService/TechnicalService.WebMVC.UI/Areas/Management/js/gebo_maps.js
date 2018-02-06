@@ -85,7 +85,7 @@
                             var comp_id = $('#comp_id').val();
                             var last_id = parseInt(last_row.find('tr:last td:first').text());
 
-                            location_table.find('tbody > tr:nth-child(' + comp_id + ')').html('<td>' + comp_id + '</td><td>' + location_add_form.find('#comp_name').val() + '</td><td>' + location_add_form.find('#comp_title').val() + '</td><td class="address">' + $('#comp_address').val() + '</td><td>' + location_add_form.find('#comp_lat_lng').val() + '</td><td>' + location_add_form.find('#comp_description').val() + '</td><td><div class="btn-group"><a href="javascript:void(0)" class="show_on_map btn btn-xs btn-default">Show</a> <a href="javascript:void(0)" class="comp_edit btn btn-default btn-xs">Edit</a></div></td>');
+                            location_table.find('tbody > tr:nth-child(' + comp_id + ')').html('<td>' + comp_id + '</td><td>' + location_add_form.find('#comp_name').val() + '</td><td>' + location_add_form.find('#comp_title').val() + '</td><td class="address">' + $('#comp_address').val() + '</td><td>' + location_add_form.find('#comp_lat_lng').val() + '</td><td>' + location_add_form.find('#comp_description').val() + '</td><td>' + location_add_form.find('#technician').text() + '</td><td><div class="btn-group"><a href="javascript:void(0)" class="show_on_map btn btn-xs btn-default">Show</a> <a href="javascript:void(0)" class="comp_edit btn btn-default btn-xs">Edit</a></div></td>');
                             $('#comp_id').val('');
 
                             clear_form();
