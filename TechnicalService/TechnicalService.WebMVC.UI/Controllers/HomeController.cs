@@ -44,6 +44,10 @@ namespace TechnicalService.WebMVC.UI.Controllers
             return PartialView("_PartialFooter");
         }
 
+        public ActionResult Contact()
+        {
+            return View();
+        }
 
     }
 }

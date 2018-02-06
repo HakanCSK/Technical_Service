@@ -139,7 +139,7 @@ namespace TechnicalService.WebMVC.UI.Controllers
 
                         // admin/kullaniciduzenle/5
                         // admin/kullanicilar
-                        if (url[1].ToLower().Contains("admin"))
+                        if (url[1].ToLower().Contains("management"))
                         {
                             ViewBag.sonuc = "Bu alana yönetici hesabınızla girebilirsiniz. Lütfen yönetici bilgilerinizle giriş yapınız.";
                         }

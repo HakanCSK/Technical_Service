@@ -1,4 +1,7 @@
-﻿<div id="heading-breadcrumbs">
+﻿
+@if (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() != "Home" || @HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() != "Index")
+{
+<div id="heading-breadcrumbs">
     <div class="container">
         <div class="row">
             <div class="col-md-7">
@@ -16,3 +19,4 @@
         </div>
     </div>
 </div>
+}

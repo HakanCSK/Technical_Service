@@ -14,39 +14,37 @@
             {
 
                 <li class="active">
-                    <a href="../Account/UpdatePassword"><i class="fa fa-list"></i> Update Password</a>
+                    <a href="../Account/UpdatePassword"><i class="fa fa-list"></i>Şifreyi Güncelle</a>
                 </li>
             }
             else
             {
 
                 <li>
-                    <a href="../Account/UpdatePassword"><i class="fa fa-list"></i> Update Password</a>
+                    <a href="../Account/UpdatePassword"><i class="fa fa-list"></i>Şifreyi Güncelle</a>
                 </li>
             }
                 
                    
-            <li>
-                <a href="#"><i class="fa fa-heart"></i>cccc</a>
-            </li>
+        
            
                 @if (HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Profile")
                 {
 
                     <li class="active">
-                        <a href="../Account/Profile"><i class="fa fa-user"></i> Profile</a>
+                        <a href="../Account/Profile"><i class="fa fa-user"></i> Profil</a>
                     </li>
                 }
                 else
                 {
                     <li >
-                        <a href="../Account/Profile"><i class="fa fa-user"></i> Profile</a>
+                        <a href="../Account/Profile"><i class="fa fa-user"></i> Profil</a>
                     </li>
                 }
                    
                 
                 <li>
-                 <a href="../Account/Logout"><i class="fa fa-sign-out"></i> Logout</a>
+                 <a href="../Account/Logout"><i class="fa fa-sign-out"></i> Çıkış Yap</a>
                     </li>
         </ul>
     </div>

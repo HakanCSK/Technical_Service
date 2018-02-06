@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "İletişim";
+    Layout = "~/Views/Shared/Layouts/_UserPageLayout.cshtml";
+}
+
+<div id="content">
+    <div class="container" id="contact">
+
+        <section>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <section>
+                        <div class="heading">
+                            <h2>SİZE YARDIM ETMEK İÇİN BURDAYIZ</h2>
+                        </div>
+
+                        <p class="lead">
+                            Lütfen bizimle iletişime geçmekten çekinmeyin, müşteri hizmetleri merkezi sizin için 7/24 çalışır.
+                        </p>
+                   
+                    </section>
+                </div>
+            </div>
+
+        </section>
+
+        <section>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="box-simple">
+                        <div class="icon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        
+                        <h3>Adres</h3>
+                        <p>
+                            
+                            Emirgan Mektebi Sk. No:7
+                            <br>Emirgan Mahallesi
+                            <br>Sarıyer, <strong>İstanbul</strong>
+                        </p>
+                    </div>
+                    <!-- /.box-simple -->
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="box-simple">
+                        <div class="icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <h3>ÇAĞRI MERKEZI</h3>
+                        <p class="text-muted">This number is toll free if calling from Great Britain otherwise we advise you to use the electronic form of communication.</p>
+                        <p>
+                            <strong>+90 538 729 98 10</strong>
+                        </p>
+                    </div>
+                    <!-- /.box-simple -->
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="box-simple">
+                        <div class="icon">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <h3>ELEKTRONIK DESTEK</h3>
+                        <p class="text-muted">Bize bir e-posta yazmaktan veya elektronik bilet sistemimizi kullanmaktan çekinmeyin.</p>
+                        <ul class="list-style-none">
+                            <li>
+                                <strong><a href="mailto:">coskunhakan95@gmail.com</a></strong>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <!-- /.box-simple -->
+                </div>
+            </div>
+
+        </section>
+
+        <section>
+
+            <div class="row text-center">
+
+                <div class="col-md-12">
+                    <div class="heading">
+                        <h2>İLETİŞİM FORMU</h2>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-md-offset-2">
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="firstname">Ad</label>
+                                    <input type="text" class="form-control" id="firstname">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="lastname">Soyad</label>
+                                    <input type="text" class="form-control" id="lastname">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" id="email">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="subject">Başlık</label>
+                                    <input type="text" class="form-control" id="subject">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="message">Mesaj</label>
+                                    <textarea id="message" class="form-control"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 text-center">
+                                <button type="submit" class="btn btn-template-main"><i class="fa fa-envelope-o"></i> Mesaj Gönder</button>
+
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </form>
+
+
+
+                </div>
+            </div>
+            <!-- /.row -->
+
+        </section>
+
+
+    </div>
+    <!-- /#contact.container -->
+</div>
+<!-- /#content -->
+
+<div id="map">
+
+</div>
+
+    <!-- gmaps -->
+
+<script src="https://maps.googleapis.com/maps/api/js?amp;sensor=false&key=AIzaSyASlIMJCT0sfCklMgqq3pCqtQCctzRusYM"></script>
+
+
+<script src="~/Scripts/gmaps.js"></script>
+
+<script src="~/Scripts/gmaps.init.js"></script>
+
+<!-- gmaps end -->

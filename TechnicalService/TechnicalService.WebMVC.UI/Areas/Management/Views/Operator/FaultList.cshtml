@@ -1,0 +1,91 @@
+﻿@using TechnicalService.BLL.Account
+@model IEnumerable<TechnicalService.Entity.Entities.Fault.Fault>
+
+@{
+    ViewBag.Title = "FaultList";
+    Layout = "~/Areas/Management/Views/Shared/_ManagementLayout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        
+        <h3 class="heading">Atanmamış Arızalar</h3>
+        <div class="row">
+            <div class="col-sm-3 col-md-3" id="g-map-top">
+               
+                <div class="location_add_form well" style="display: none">
+                    <p class="formSep"><strong>Add/Edit location:</strong></p>
+                    <div class="formSep">
+                        <label>Kullanıcı Adı</label>
+                        <input type="text" class="form-control" id="comp_name" readonly="readonly">
+                        <label>Başlık</label>
+                        <input type="text" class="form-control" id="comp_title" >
+                        <label>Açıklama</label>
+                        <input type="text" class="form-control" id="comp_description">
+                        <label>Teknisyen</label>
+                         @Html.DropDownListFor(model =>model.First().ID, new SelectList(ViewBag.Technician, "id", "UserName"), "Teknisyen Seçiniz", new { @class = "form-control", id = "technician" })
+                        <label>Adres</label>
+                        <input type="text" class="form-control" id="comp_address" readonly="readonly">
+                        <label>Lat, Lng</label>
+                        <input type="text" class="form-control" id="comp_lat_lng" readonly="readonly">
+                        <input type="hidden" id="comp_id" class="form-control">
+                    </div>
+                    <button class="btn btn-invert btn-default">Save</button>
+                </div>
+            </div>
+            <div class="col-sm-9 col-md-9">
+                <div class="well">
+                    <div id="g_map" style="width:100%;height:400px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <h3 class="heading"></h3>
+        <table class="table table-striped location_table table-bordered dTableR" id="dt_a">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Kullanıcı Adı</th>
+                    <th>Başlık</th>
+                    <th>Adres Açıklaması</th>
+                    <th>Lat, Lng</th>
+                    <th>Açıklama</th>
+                    <th>İşlemler</th>
+                    <th class="hidden"></th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+@foreach (var item in Model)
+{
+    if (item.OperatorID == ViewBag.OperatorID)
+    {
+                <tr>
+                
+                    <td>@item.ID</td>
+                    <td>@MembershipTools.GetUserName(item.UserID)</td>
+                    <td>@item.Title</td>
+                    <td class="address">@item.Address</td>
+                    <td>@item.lat, @item.lng</td>
+                    <td>@item.Description</td>
+                    <td class="hidden">@item.TechnicianID</td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="javascript:void(0)" class="show_on_map btn btn-default btn-xs">Show</a>
+                            <a href="javascript:void(0)" class="comp_edit btn btn-default btn-xs">Edit</a>
+                        </div>
+                    </td>
+                   
+                </tr>
+    }
+}
+            </tbody>
+        </table>
+    </div>
+</div>         
+

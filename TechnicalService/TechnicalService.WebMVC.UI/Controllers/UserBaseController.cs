@@ -9,7 +9,7 @@ using static TechnicalService.BLL.Repository.Repository;
 
 namespace TechnicalService.WebMVC.UI.Controllers
 {
-    public class BaseController : Controller
+    public class UserBaseController : Controller
     {
         [NonAction]
         public void ImageResize(int width, int height, string path)

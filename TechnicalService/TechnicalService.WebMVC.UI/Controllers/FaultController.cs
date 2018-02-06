@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using TechnicalService.BLL.Account;
 using TechnicalService.BLL.Settings;
 using TechnicalService.Entity.Entities.Fault;
 using TechnicalService.Entity.Enums;
@@ -14,7 +15,7 @@ using static TechnicalService.BLL.Repository.Repository;
 
 namespace TechnicalService.WebMVC.UI.Controllers
 {
-    public class FaultController : BaseController
+    public class FaultController : UserBaseController
     {
         public ActionResult FaultReport()
 
@@ -30,14 +31,7 @@ namespace TechnicalService.WebMVC.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult FaultReport(FaultViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                var Categories = CategoriSelectList();
-                var Brands = BrandSelectList();
-                ViewBag.Brands = Brands;
-                ViewBag.Categories = Categories;
-                return View(model);
-            }
+        
 
 
             if (model == null)
@@ -45,7 +39,7 @@ namespace TechnicalService.WebMVC.UI.Controllers
             Fault NewFault = new Fault()
             {
                  ModelID=model.ModelID,
-                UserID = User.Identity.GetUserId(),
+                UserID = MembershipTools.GetUser().Id,
                 Description = model.Description,
                 Address = model.AddressDescription,
                 Title = model.Title,
@@ -56,6 +50,10 @@ namespace TechnicalService.WebMVC.UI.Controllers
                 
                  
             };
+            var Categories = CategoriSelectList();
+            var Brands = BrandSelectList();
+            ViewBag.Brands = Brands;
+            ViewBag.Categories = Categories;
             try
             {
                 new FaultRepo().Insert(NewFault);
@@ -91,16 +89,52 @@ namespace TechnicalService.WebMVC.UI.Controllers
                 };
                 NewFault.Statuses.Add(NewFault_Status);
                 new FaultRepo().Update();
-                return RedirectToAction("Index");
+                ViewBag.sonuc = "Kayıt Başarılı";
+
+                return View();
             }
             catch (Exception ex)
             {
                 ViewBag.sonuc = "Arıza kaydedilirken beklenmeyen bir hata oluştu. > " + ex.Message;
-                return RedirectToAction("FaultReport");
+                return View();
             }
 
 
         }
+
+        public ActionResult Faults()
+        {
+            var faults = new FaultRepo().GetAll().Where(x=>x.UserID==User.Identity.GetUserId()).ToList();
+            if (TempData["Sonuc"] != null)
+            {
+                ViewBag.Sonuc = TempData["Sonuc"];
+                TempData.Remove("Sonuc");
+            }
+
+            return View(faults);
+        }
+        public ActionResult Delete(int id)
+        {
+            var faultrepo = new FaultRepo();
+            var fault=faultrepo.GetById(id);
+
+            try
+            {
+
+                faultrepo.Delete(fault);
+                
+            }
+            catch (Exception ex)
+            {
+                TempData["Sonuc"] = "Arıza Silinemedi" + ex.Message;
+                return RedirectToAction("Faults");
+            }
+            TempData["Sonuc"] = "Arıza Silindi";
+            return RedirectToAction("Faults");
+
+
+        }
+
 
     }
 }

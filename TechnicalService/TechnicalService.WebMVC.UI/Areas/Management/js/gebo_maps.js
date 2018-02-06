@@ -19,7 +19,7 @@
     };
 	//* marker message 
     function marker_message() {
-        $.sticky('Drag marker to adjust position.', {autoclose : 5000, position: "top-center", type: "st-info" });
+        $.sticky('Konumu ayarlamak için iþaretçiyi sürükleyin.', {autoclose : 5000, position: "top-center", type: "st-info" });
     };
 	// marker callback after drag end
     function marker_callback(marker) {
@@ -59,22 +59,43 @@
             });
         },
         save_location: function() {
-            //* save location
-			location_add_form.on('click','button', function() {
-                $('html,body').animate({ scrollTop: location_table.offset().top }, 'fast');
-                var last_row = location_table.find('tbody:last');
-                var comp_id = $('#comp_id').val();
-                var last_id = parseInt( last_row.find('tr:last td:first').text() );
-                if(comp_id != ''){
-                    location_table.find('tbody > tr:nth-child('+comp_id+')').html('<td>'+comp_id+'</td><td>'+location_add_form.find('#comp_name').val()+'</td><td>'+location_add_form.find('#comp_contact').val()+'</td><td class="address">'+$('#comp_address').val()+'</td><td>'+location_add_form.find('#comp_lat_lng').val()+'</td><td>'+location_add_form.find('#comp_phone').val()+'</td><td><div class="btn-group"><a href="javascript:void(0)" class="show_on_map btn btn-xs btn-default">Show</a> <a href="javascript:void(0)" class="comp_edit btn btn-default btn-xs">Edit</a></div></td>');
-                    $('#comp_id').val('');
-                }else {
-                    last_row.append('<tr><td>'+(last_id + 1)+'</td><td>'+location_add_form.find('#comp_name').val()+'</td><td>'+location_add_form.find('#comp_contact').val()+'</td><td class="address">'+$('#comp_address').val()+'</td><td>'+location_add_form.find('#comp_lat_lng').val()+'</td><td>'+location_add_form.find('#comp_phone').val()+'</td><td><div class="btn-group"><a href="javascript:void(0)" class="show_on_map btn btn-xs btn-default">Show</a> <a href="javascript:void(0)" class="comp_edit btn btn-default btn-xs">Edit</a></div></td></tr>');
-                };
-                clear_form();
-                clear_search();
-                g_Map.gmap3({action:'clear'});
-                $.sticky("Location Successfuly Saved.", {autoclose : 5000, position: "top-center", type: "st-info" });
+            
+            location_add_form.on('click', 'button', function () {
+                var latlng = location_add_form.find('#comp_lat_lng').val();
+                var technician = location_add_form.find('#technician').val();
+                var id = location_add_form.find('#comp_id').val();
+                var address = location_add_form.find('#comp_address').val();
+                var title = location_add_form.find('#comp_title').val();
+                var description = location_add_form.find('#comp_description').val();
+                var data = { latlng: latlng, technician: technician,id:id, address:address,title:title,description:description }
+                $.ajax({
+                    url: "../Base/UpdateFault",
+                    type: 'POST',
+                    data: data,
+                    dataType: "text",
+                    success: function (result) {
+                        if (result != "ok") {
+                            $.sticky("Kayit yapilamadi(" + result + ").", { autoclose: 5000, position: "top-center", type: "st-info" });
+                            clear_form();
+                            clear_search();
+                            g_Map.gmap3({ action: 'clear' });
+                        } else {
+                            $('html,body').animate({ scrollTop: location_table.offset().top }, 'fast');
+                            var last_row = location_table.find('tbody:last');
+                            var comp_id = $('#comp_id').val();
+                            var last_id = parseInt(last_row.find('tr:last td:first').text());
+
+                            location_table.find('tbody > tr:nth-child(' + comp_id + ')').html('<td>' + comp_id + '</td><td>' + location_add_form.find('#comp_name').val() + '</td><td>' + location_add_form.find('#comp_title').val() + '</td><td class="address">' + $('#comp_address').val() + '</td><td>' + location_add_form.find('#comp_lat_lng').val() + '</td><td>' + location_add_form.find('#comp_description').val() + '</td><td><div class="btn-group"><a href="javascript:void(0)" class="show_on_map btn btn-xs btn-default">Show</a> <a href="javascript:void(0)" class="comp_edit btn btn-default btn-xs">Edit</a></div></td>');
+                            $('#comp_id').val('');
+
+                            clear_form();
+                            clear_search();
+                            g_Map.gmap3({ action: 'clear' });
+                            $.sticky("Kayit Basarili.", { autoclose: 5000, position: "top-center", type: "st-info" });
+                        }
+                        }
+                });
+               
             });  
         },
         edit_location: function() {
@@ -84,11 +105,13 @@
                 var this_item = $(this).closest('tr');
                 $('#comp_id').val(this_item.find('td:nth-child(1)').text());
                 $('#comp_name').val(this_item.find('td:nth-child(2)').text());
-                $('#comp_contact').val(this_item.find('td:nth-child(3)').text());
+                $('#comp_title').val(this_item.find('td:nth-child(3)').text());
+
                 $('#comp_address').val(this_item.find('td:nth-child(4)').text());
-                var show_lat_lng = $('#comp_lat_lng').val(this_item.find('td:nth-child(5)').text());
+                var show_lat_lng = $('#comp_lat_lng').val(this_item.find('td:nth-child(5)').text());//bura
                 var latLng_array = show_lat_lng.val().split(',');
-                $('#comp_phone').val(this_item.find('td:nth-child(6)').text());
+                $('#comp_description').val(this_item.find('td:nth-child(6)').text());
+                $('#technician').val(this_item.find('td:nth-child(7)').text());
                 $('html,body').animate({ scrollTop: $('.main_content').offset().top - 40 }, 'fast', function(){
                     g_Map.gmap3(
                         {

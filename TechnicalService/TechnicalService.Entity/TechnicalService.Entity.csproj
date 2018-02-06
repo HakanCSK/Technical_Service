@@ -81,6 +81,7 @@
     <Compile Include="Entities\Product\Brand.cs" />
     <Compile Include="Entities\Product\Category.cs" />
     <Compile Include="Entities\Product\Model.cs" />
+    <Compile Include="Entities\Site\Header.cs" />
     <Compile Include="Entities\Site\Slider.cs" />
     <Compile Include="Entities\Survey\Survey.cs" />
     <Compile Include="Entities\Fault\Fault_Photo.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="ViewsModel\FaultViewModel.cs" />
     <Compile Include="ViewsModel\LoginViewModel.cs" />
     <Compile Include="ViewsModel\MailModel.cs" />
+    <Compile Include="ViewsModel\ManagementViewModels\UserViewModel.cs" />
     <Compile Include="ViewsModel\ProfileViewModel.cs" />
     <Compile Include="ViewsModel\RegisterViewModel.cs" />
   </ItemGroup>

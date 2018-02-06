@@ -201,6 +201,7 @@
     <Content Include="Areas\Management\gallery\Image28_tn.jpg" />
     <Content Include="Areas\Management\gallery\Image29.jpg" />
     <Content Include="Areas\Management\gallery\Image29_tn.jpg" />
+    <Content Include="Areas\Management\gallery\jquery-3.0.0.min.js" />
     <Content Include="Areas\Management\img\acc_icons.png" />
     <Content Include="Areas\Management\img\adt-icons.png" />
     <Content Include="Areas\Management\img\ajax_loader.gif" />
@@ -1536,9 +1537,21 @@
     <Content Include="Content\style.turquoise.css" />
     <Content Include="Content\style.violet.css" />
     <Content Include="Global.asax" />
+    <Content Include="images\apple-touch-icon.png" />
+    <Content Include="images\apple-touch-icon-114x114.png" />
+    <Content Include="images\apple-touch-icon-120x120.png" />
+    <Content Include="images\apple-touch-icon-144x144.png" />
+    <Content Include="images\apple-touch-icon-152x152.png" />
+    <Content Include="images\apple-touch-icon-57x57.png" />
+    <Content Include="images\apple-touch-icon-72x72.png" />
+    <Content Include="images\apple-touch-icon-76x76.png" />
+    <Content Include="images\banner.jpg" />
+    <Content Include="images\banner2.jpg" />
+    <Content Include="images\basketsquare.jpg" />
     <Content Include="images\bg2.jpg" />
     <Content Include="images\camera-loader.gif" />
     <Content Include="images\favicon.ico" />
+    <Content Include="images\slider.png" />
     <Content Include="images\gmap_marker.png" />
     <Content Include="images\gmap_marker2.png" />
     <Content Include="images\gmap_marker2_active.png" />
@@ -1550,6 +1563,8 @@
     <Content Include="images\gmap_marker5_active.png" />
     <Content Include="images\gmap_marker_active.png" />
     <Content Include="images\ie8-panel\warning_bar_0000_us.jpg" />
+    <Content Include="images\logo-small.png" />
+    <Content Include="images\logo.png" />
     <Content Include="images\page-1_img01.jpg" />
     <Content Include="images\page-1_img02.jpg" />
     <Content Include="images\page-1_img03.jpg" />
@@ -1574,6 +1589,7 @@
     <Content Include="images\page-3_img05.jpg" />
     <Content Include="images\page-3_img06.jpg" />
     <Content Include="images\page-4_img01.jpg" />
+    <Content Include="images\slider2.jpg" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap-hover-dropdown.js" />
@@ -1598,7 +1614,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Areas\Management\Views\web.config" />
     <Content Include="Areas\Management\Views\Shared\_ManagementLayout.cshtml" />
-    <Content Include="Areas\Management\Views\Admin\Index.cshtml" />
     <Content Include="Areas\Management\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\Management\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Areas\Management\bootstrap\fonts\glyphicons-halflings-regular.woff" />
@@ -1711,6 +1726,9 @@
     <Content Include="Areas\Management\lib\x-editable\LICENSE-MIT" />
     <Content Include="Areas\Management\lib\x-editable\README.md" />
     <Content Include="Areas\Management\video\big_buck_bunny.ogv" />
+    <Content Include="Areas\Management\Views\Admin\UserManager.cshtml" />
+    <Content Include="Areas\Management\Views\Operator\FaultList.cshtml" />
+    <Content Include="Areas\Management\Views\Operator\Details.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1748,9 +1766,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Areas\Management\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Management\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Management\Controllers\OperatorController.cs" />
+    <Compile Include="Areas\Management\Controllers\TechnicianController.cs" />
     <Compile Include="Areas\Management\ManagementAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\UserBaseController.cs" />
     <Compile Include="Controllers\FaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1765,7 +1786,6 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\FontAwesome.otf" />
     <None Include="packages.config" />
-    <Content Include="Views\Shared\Layouts\_UserHomeLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -1775,7 +1795,6 @@
     <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Views\Shared\_PartialLogin.cshtml" />
     <Content Include="Views\Shared\_PartialTop.cshtml" />
-    <Content Include="Views\Shared\_PartialNavbar.cshtml" />
     <Content Include="Views\Shared\_PartialCopyright.cshtml" />
     <Content Include="Views\Shared\_PartialBottomHeader.cshtml" />
     <Content Include="Views\Shared\Layouts\_UserPageLayout.cshtml" />
@@ -1784,10 +1803,11 @@
     <Content Include="Views\Shared\_PartialAccountSidebar.cshtml" />
     <Content Include="Views\Account\Activation.cshtml" />
     <Content Include="Views\Account\RecoverPassword.cshtml" />
-    <Content Include="Views\Home\FaultReport.cshtml" />
     <Content Include="Views\Fault\FaultReport.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Fault\Faults.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1799,6 +1819,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Management\lib\plupload\examples\uploads\" />
     <Folder Include="Areas\Management\Models\" />
+    <Folder Include="Areas\Management\Views\Base\" />
+    <Folder Include="Areas\Management\Views\Technician\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\esm\" />
     <Folder Include="Scripts\umd\" />

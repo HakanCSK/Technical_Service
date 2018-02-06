@@ -9,9 +9,10 @@ namespace TechnicalService.Entity.Enums
     public enum IdentityRoles : byte
     {
         Admin,
-        Operator,
+        Operatör,
         Teknisyen,
         User,
-        Passive
+        Passive,
+        Deleted
     }
 }
